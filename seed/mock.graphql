@@ -1,0 +1,74 @@
+mutation {
+  createPerson(
+    data: {
+      name: "João"
+      phone: "061-9999-0002"
+      active: true
+    }
+  ) {
+    id
+  }
+}
+
+mutation {
+  createVolunteer(
+    data:{
+      name: "Vivaldo"
+      phone: "061-9999-0001"
+      active: true
+      roles: {
+        set: [ADMIN, USER]
+      }
+    }
+  ){
+    id
+  }
+}
+
+mutation {
+  createVolunteerAvailability(
+    data: {
+      dateStart: "2020-03-27T00:10:00.000Z"
+      dateEnd: "2020-03-27T00:20:00.000Z"
+      roles:{
+        set:[ADMIN]
+      }
+      volunteer:{
+        connect:{
+          phone:"061-9999-0001"
+        }
+			}
+    }
+  ) {
+    id
+  }
+}
+
+mutation{
+  createAttendance(
+    data:{
+      person: {
+        connect: {
+          phone: "061-9999-0002"
+        }
+      }
+      volunteer: {
+        connect: {
+          phone: "061-9999-0001"
+        }
+      }
+      dateCall: "2020-03-27T00:10:00.000Z"
+      dateInteractionStart: "2020-03-27T00:10:00.000Z"
+      dateInteractionEnd: "2020-03-27T00:20:00.000Z"
+      type: BIBLICAL
+      interactionMedia: VIDEO
+      mediaId: "https://streamurl.xyz.com/001"
+      PersonNPS: PROMOTER
+      PersonComments: "Vivaldo is a great listener"
+      VolunteerNPS: PASSIVE
+      VolunteerComments:"John responded very well to biblical advice"
+  	}
+  ) {
+    id
+  }
+}

@@ -1,0 +1,40 @@
+type Volunteer {
+  id: ID! @id
+  name: String!
+  phone: String! @unique
+  active: Boolean! @default(value: false)
+  roles: [RoleFormat!]! @scalarList(strategy: RELATION)
+  # 1:1 Relations -  https://www.prisma.io/docs/datamodel-and-migrations/datamodel-MYSQL-knul/#relations
+  volunteerAvailability: VolunteerAvailability @relation(link: INLINE) 
+}
+
+type Person {
+  id: ID! @id
+  name: String!
+  phone: String! @unique
+  active: Boolean! @default(value: false)
+}
+
+type VolunteerAvailability {
+  id: ID! @id
+  volunteer: Volunteer!
+  dateStart: DateTime
+  dateEnd: DateTime
+  roles: [RoleFormat!]! @scalarList(strategy: RELATION)
+}
+
+type Attendance {
+  id: ID! @id
+  person: Person!
+  volunteer: Volunteer!
+  dateCall: DateTime
+  dateInteractionStart: DateTime
+  dateInteractionEnd: DateTime
+  type: TypeFormat! @default(value: GENERAL)
+  interactionMedia: InteractionMediaFormat! @default(value: VIDEO)
+  mediaId: String!
+  PersonNPS: NPSFormat
+  VolunteerNPS: NPSFormat
+  PersonComments: String
+  VolunteerComments: String
+}

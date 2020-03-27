@@ -1,0 +1,14 @@
+endpoint: http://${env:PRISMA_SERVER_HOST}:${env:PRISMA_SERVER_PORT}
+
+secret: ${env:PRISMA_SERVICE_SECRET}
+
+datamodel:
+  - database/types.prisma
+  - database/enums.prisma
+
+hooks:
+  post-deploy:
+    - echo "Deployment finished"
+
+seed:
+  import: seed/mock.graphql

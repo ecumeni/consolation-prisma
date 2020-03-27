@@ -1,0 +1,22 @@
+enum NPSFormat {
+  PROMOTER
+  PASSIVE
+  DETRACTOR
+}
+
+enum RoleFormat {
+  ADMIN
+  USER
+}
+
+enum TypeFormat {
+  GENERAL
+  BIBLICAL
+  COMFORTER
+}
+
+enum InteractionMediaFormat {
+  CHAT
+  VIDEO
+  AUDIO
+}
